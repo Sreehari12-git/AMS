@@ -1,14 +1,14 @@
-const express = require('express')
+import express from "express"
+import authRoutes from "./routes/authRoutes.js"
+import dotenv from "dotenv"
+dotenv.config();
 
 const app = express()
 
-const port = 3000
+const PORT = process.env.PORT
 
-app.get('/', (req,res) => {
-    res.send("Hello World!")
-})
+app.use('/', authRoutes)
 
-app.listen(port, () => {
-    console.log(`Listening to port ${port}`);
-    
+app.listen(PORT, () => {
+    console.log(`Listening to port ${PORT}`);  
 })
