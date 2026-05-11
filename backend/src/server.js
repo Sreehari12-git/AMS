@@ -7,6 +7,8 @@ const app = express()
 
 const PORT = process.env.PORT
 
+app.use(express.json())
+    
 app.use('/', authRoutes)
 
 app.listen(PORT, () => {
