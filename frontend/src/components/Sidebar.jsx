@@ -1,8 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Sidebar.css'
 
 const Sidebar = () => {
+
+    const navigate = useNavigate();
+
+    function logout() {
+        navigate("/");
+    }
   return (
     <div className="sidebar">
       <h2 className="logo">AMS</h2>
@@ -14,6 +20,7 @@ const Sidebar = () => {
         <Link to="team">Team</Link>
         <Link to="reports">Reports</Link>
       </nav>
+      <button className="logout-btn" onClick={logout}>Logout</button>
     </div>
   )
 }
