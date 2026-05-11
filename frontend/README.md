@@ -35,3 +35,8 @@ attendify/
 │
 ├── frontend/
 └── backend/
+
+#Feature
+- Login page
+- Sidebar + Main Layout
+
