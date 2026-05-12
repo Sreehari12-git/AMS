@@ -18,7 +18,8 @@ const Login = () => {
       localStorage.setItem("email", data.user.email || email);
       localStorage.setItem("username", data.user.fullName ?? "User");
 
-      navigate("/dashboard");
+      navigate("/attendance")
+
     } catch(error) {
       console.log(error);
       alert(

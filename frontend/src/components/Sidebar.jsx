@@ -14,7 +14,6 @@ const Sidebar = () => {
       <h2 className="logo">AMS</h2>
 
       <nav className="nav-links">
-        <Link to="dashboard">Dashboard</Link>
         <Link to="attendance">Attendance</Link>
         <Link to="leave">Leave</Link>
         <Link to="team">Team</Link>

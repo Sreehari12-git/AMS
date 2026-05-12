@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Dashboard = () => {
+const EmployeeDashboard = () => {
     return (
         <>
             <h1>Dashboard</h1>
         </>
     )
 }
-export default Dashboard
+export default EmployeeDashboard
