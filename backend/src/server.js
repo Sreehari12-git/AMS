@@ -5,8 +5,16 @@ dotenv.config();
 import attendanceRoute from "./routes/attendanceRoutes.js"
 import userRouter from "./routes/userRouter.js"
 import leaveRoute from "./routes/leaveRoute.js"
+import cors from "cors"
 
 const app = express()
+
+app.use(cors({
+    origin: "http://localhost:1000/",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+}));
 
 const PORT = process.env.PORT
 
