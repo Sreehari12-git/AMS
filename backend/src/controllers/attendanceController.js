@@ -24,7 +24,7 @@ export const markAttendance = async(req,res) => {
         const attendance = await prisma.attendance.create({
             data: {
                 userId,
-                date: currentDate,
+                date: startOfDay,
                 day,
                 clockIn: currentDate,
                 status: "PRESENT"
@@ -38,6 +38,61 @@ export const markAttendance = async(req,res) => {
 
     }
     catch(error) {
+        console.log(error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+}
+
+export const clockout = async(req,res) => {
+    try {
+        const userId = req.user.id;
+
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        const attendance = await prisma.attendance.findUnique({
+            where: {userId_date: { userId, date:today}},
+        })
+
+        if(!attendance?.clockIn) {
+            return res.status(400).json({ message: "Not clocked in"});
+        }
+
+        if(attendance.clockOut) {
+            return res.status(400).json({message: "Already clocked out"});
+        }
+
+        const clockOutTime = new Date();
+
+        const totalMinutes = Math.floor(
+                    (clockOutTime.getTime() - new Date(attendance.clockIn).getTime()) / (1000 * 60)
+        );
+        const hours = Math.floor(totalMinutes / 60);
+        const mins = totalMinutes % 60;
+        const duration = `${hours}h ${mins}m`;
+        const totalHours = parseFloat((totalMinutes / 60).toFixed(2));
+        const updateAttendance = await prisma.attendance.update({
+            where: {
+                userId_date: {
+                    userId,
+                    date: today,  
+                }
+            },
+            data: {
+                clockOut: clockOutTime,
+                totalHours,
+                duration
+            }
+        });
+
+        res.status(200).json({
+            message: "Checked out successfully",
+            updateAttendance
+        })
+    }  catch(error) {
         console.log(error);
 
         res.status(500).json({
