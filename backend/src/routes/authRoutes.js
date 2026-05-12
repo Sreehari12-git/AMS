@@ -20,4 +20,4 @@ router.get("/admin-dashboard", authMiddleware, roleMiddleware("admin"), (req,res
     })
 })
 
-export default router
+export default router;
