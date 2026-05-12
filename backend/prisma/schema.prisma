@@ -24,14 +24,15 @@ model Attendance {
   id        Int     @id @default(autoincrement()) 
   userId Int
   date DateTime
-  day DateTime
-  check_in DateTime
-  check_out DateTime
-  attendance_type String
-  latitude Decimal
-  longitude Decimal
-  location_name String
-  status String
+  day String?
+  clockIn DateTime?
+  clockOut DateTime?
+  duration String?
+  leaveType String?
+  totalHours Float?
+  latitude Decimal?
+  longitude Decimal?
+  status String @default("ABSENT")
   created_at DateTime @default(now())
   user User @relation(fields: [userId], references: [id])
   @@unique([userId,date])
