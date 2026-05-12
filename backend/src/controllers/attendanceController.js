@@ -117,3 +117,37 @@ export const getMyAttendance = async(req,res,next) => {
         res.status(500).json({message : "Server error"});
     }
 }
+
+export const getTodayAttendance = async(req,res,next) => {
+    try {
+        const userId = await req.user.id;
+
+        const today = new Date();
+
+        today.setHours(0,0,0,0);
+
+        const attendance = await prisma.attendance.findUnique({
+            where: {
+                userId_date: {
+                    userId,
+                    date: today
+                }
+            }
+        })
+        res.json(attendance);
+    } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+}
+
+export const getAllAttendance = async(req,res) => {
+    try {
+        const data = await prisma.attendance.findMany({
+            include: {user: true},
+            orderBy: { date: "desc"}
+        })
+        res.json(data);
+    } catch(error) {
+        res.status(500).json({ message: "Server error" });
+    }
+}
