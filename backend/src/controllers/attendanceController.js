@@ -100,3 +100,20 @@ export const clockout = async(req,res) => {
         });
     }
 }
+
+export const getMyAttendance = async(req,res,next) => {
+    try {
+        const userId = await req.user.id;
+        
+        const records = await prisma.attendance.findMany({
+            where: {userId},
+            orderBy: { date: "desc"},
+        });
+
+        res.json(records);
+    }
+    catch(error) {
+        console.log(error);
+        res.status(500).json({message : "Server error"});
+    }
+}
