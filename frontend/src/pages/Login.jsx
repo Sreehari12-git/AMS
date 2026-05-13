@@ -22,8 +22,10 @@ const Login = () => {
 
       if(role === "admin") {
         navigate("/admin/create-user")  
-      } else {
+      } else if(role === "employee"){
         navigate("/attendance")  
+      } else {
+        navigate("/leave-request");
       }
 
     } catch(error) {

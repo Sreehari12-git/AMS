@@ -84,6 +84,7 @@ function CreateUser() {
       >
         <option value="employee">Employee</option>
         <option value="admin">Admin</option>
+        <option value="HR">HR</option>
       </select>
 
       <br />

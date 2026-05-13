@@ -10,7 +10,8 @@ import AdminLayout from './layouts/AdminLayout'
 import CreateUser from './pages/CreateUser'
 import DeleteUser from './pages/DeleteUser'
 import Attendance from './pages/Attendance'
-
+import HRLayout from "./layouts/HRLayout"
+import LeaveRequest from './pages/LeaveRequest'
 function App() {
 
   return (
@@ -26,6 +27,9 @@ function App() {
         <Route element={<ProtectedRoute allowedRoles={"admin"}><AdminLayout /></ProtectedRoute>}>
           <Route path='/admin/create-user' element={<CreateUser />} />
           <Route path='/admin/delete-user' element={<DeleteUser />} />
+        </Route>
+        <Route element={<ProtectedRoute allowedRoles={"HR"}><HRLayout /></ProtectedRoute>}>
+          <Route path='/leave-request' element={<LeaveRequest/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
