@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './AdminSidebar.css'
 
 const AdminSidebar = () => {
@@ -16,8 +16,8 @@ const AdminSidebar = () => {
       <h2 className="admin-logo">AMS</h2>
 
       <nav className="admin-nav-links">
-        <Link to="/admin/create-user">Create User</Link>
-        <Link to="/admin/delete-user">Delete User</Link>
+        <NavLink to="/admin/create-user" className={({isActive}) => isActive ? "active-link" : ""}>Create User</NavLink>
+        <NavLink to="/admin/delete-user" className={({isActive}) => isActive ? "active-link" : ""}>Delete User</NavLink>
       </nav>
 
       <button className="admin-logout-btn" onClick={logout}>Logout</button>

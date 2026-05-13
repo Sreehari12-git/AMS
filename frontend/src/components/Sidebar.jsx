@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './Sidebar.css'
 
 const Sidebar = () => {
@@ -15,10 +15,10 @@ const Sidebar = () => {
       <h2 className="logo">AMS</h2>
 
       <nav className="nav-links">
-        <Link to="attendance">Attendance</Link>
-        <Link to="leave">Leave</Link>
-        <Link to="team">Team</Link>
-        <Link to="reports">Reports</Link>
+        <NavLink to="attendance" className={({isActive}) => isActive ? "active-link": ""}>Attendance</NavLink>
+        <NavLink to="leave" className={({isActive}) => isActive ? "active-link": ""}>Leave</NavLink>
+        <NavLink to="team" className={({isActive}) => isActive ? "active-link": ""}>Team</NavLink>
+        <NavLink to="reports" className={({isActive}) => isActive ? "active-link": ""}>Reports</NavLink>
       </nav>
       <button className="logout-btn" onClick={logout}>Logout</button>
     </div>
