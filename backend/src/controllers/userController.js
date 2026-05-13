@@ -4,7 +4,6 @@ import prisma from "../config/prisma.js";
 export const createUser = async(req,res) => {
     try {
         const { email, name, password, role} = req.body;
-
          if (!email || !name || !password) {
             return res.status(400).json({
                 message: "Name, email and password are required",
@@ -37,34 +36,44 @@ export const createUser = async(req,res) => {
     }
 }
 
-export const deleteUser = async (req,res) => {
-    
+export const deleteUser = async (req, res) => {
+
     try {
-    const {id} = req.params;
 
-    const user = await prisma.user.findUnique({
-        where: {id : parseInt(id)}
-    });
+        const { email } = req.params;
 
-    if(!user) {
-        return res.status(404).json({
-            message: "User not found"
-        })
-    }
+        const user = await prisma.user.findUnique({
+            where: {
+                email
+            }
+        });
 
-    await prisma.user.delete({
-        where: {id : parseInt(id)}
-    })
+        if (!user) {
 
-    res.status(200).json({
-        message: "Deleted user successfully"
-    })
-    }
-    catch(error) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+
+        }
+
+        await prisma.user.delete({
+            where: {
+                email
+            }
+        });
+
+        res.status(200).json({
+            message: "Deleted user successfully"
+        });
+
+    } catch(error) {
+
         console.log(error);
+
         res.status(500).json({
             message: "Server error"
-        })
+        });
+
     }
 
 }

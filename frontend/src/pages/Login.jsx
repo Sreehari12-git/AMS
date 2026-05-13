@@ -7,8 +7,31 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
-  function login() {
-    navigate('/dashboard')
+  const login = async() => {
+    try {
+     const data = await loginUser(email,password);
+
+     const role = data.user.role;
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.user.role);
+      localStorage.setItem("email", data.user.email || email);
+      localStorage.setItem("username", data.user.fullName ?? "User");
+
+      if(role === "admin") {
+        navigate("/admin/create-user")  
+      } else {
+        navigate("/attendance")  
+      }
+
+    } catch(error) {
+      console.log(error);
+      alert(
+        error.response?.data?.message ||
+        "Login failed"
+      );
+    }
   }
 
  return (

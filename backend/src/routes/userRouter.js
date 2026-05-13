@@ -4,6 +4,6 @@ import { createUser, deleteUser } from "../controllers/userController.js";
 const router = Router();
 
 router.post("/create", createUser)
-router.delete("/delete/:id", deleteUser)
+router.delete("/delete/:email", deleteUser)
 
 export default router;
