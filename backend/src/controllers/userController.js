@@ -4,6 +4,7 @@ import prisma from "../config/prisma.js";
 export const createUser = async(req,res) => {
     try {
         const { email, name, password, role} = req.body;
+
          if (!email || !name || !password) {
             return res.status(400).json({
                 message: "Name, email and password are required",
