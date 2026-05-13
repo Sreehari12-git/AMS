@@ -1,0 +1,109 @@
+/* RecentLogs.css */
+
+.logs-wrapper {
+  max-width: 900px;
+  margin: 1.5rem 0;
+  background: #ffffff;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.logs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 0.5px solid #e0e0e0;
+}
+
+.logs-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.logs-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.logs-link:hover {
+  text-decoration: underline;
+}
+
+.logs-table-wrapper {
+  overflow-x: auto;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.logs-table thead tr {
+  background: #f9fafb;
+}
+
+.logs-table th {
+  padding: 10px 1.5rem;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.06em;
+  border-bottom: 0.5px solid #e0e0e0;
+}
+
+.logs-table td {
+  padding: 14px 1.5rem;
+  color: #374151;
+  border-bottom: 0.5px solid #f3f4f6;
+}
+
+.logs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.logs-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.checkin-time {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+
+.badge-present {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.badge-approved {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-absent {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.no-data {
+  text-align: center;
+  color: #9ca3af;
+  padding: 2rem;
+}
