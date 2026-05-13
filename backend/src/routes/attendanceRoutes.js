@@ -8,9 +8,9 @@ const router = Router()
 
 router.post("/check-in", authMiddleware, markAttendance);
 router.post("/check-out", authMiddleware, clockout)
-router.post("/my", authMiddleware, getMyAttendance)
-router.post("/today", authMiddleware, getTodayAttendance);
-router.post("/all",authMiddleware,getAllAttendance)
+router.get("/my", authMiddleware, getMyAttendance)
+router.get("/today", authMiddleware, getTodayAttendance);
+router.get("/all",authMiddleware,getAllAttendance)
 
 
 export default router

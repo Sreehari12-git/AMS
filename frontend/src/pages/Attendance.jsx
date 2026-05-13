@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SessionTimer from '../components/SessionTimer'
+import RecentLogs from '../components/RecentLogs'
+import ApplyLeave from './ApplyLeave'
 
 const  Attendance = () => {
+
+
   return (
     <>
-      <h1>Daily Attendance</h1>
-      <p>Record your presence and manage check-in history.</p>
+      <SessionTimer/>
+      <RecentLogs/>
     </>
   )
 }

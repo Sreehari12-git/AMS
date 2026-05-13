@@ -9,7 +9,7 @@ import ApplyLeave from './pages/ApplyLeave'
 import AdminLayout from './layouts/AdminLayout'
 import CreateUser from './pages/CreateUser'
 import DeleteUser from './pages/DeleteUser'
-import EmployeeAttendance from './pages/EmployeeAttendance'
+import Attendance from './pages/Attendance'
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login/>} />
         <Route element = {<ProtectedRoute allowedRoles={"employee"}> <MainLayout/> </ProtectedRoute>}>
-          <Route path='/attendance' element={<EmployeeAttendance/>}/>
+          <Route path='/attendance' element={<Attendance/>}/>
           <Route path='/leave' element={<ApplyLeave/>}/>
           <Route path='/team' element={<Teams/>}/>
           <Route path='/reports' element={<Report/>}/>

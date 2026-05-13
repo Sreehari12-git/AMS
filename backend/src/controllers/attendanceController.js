@@ -134,7 +134,7 @@ export const getTodayAttendance = async(req,res,next) => {
                 }
             }
         })
-        res.json(attendance);
+        res.json({attendance});
     } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
