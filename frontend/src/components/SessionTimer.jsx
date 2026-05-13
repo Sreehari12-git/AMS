@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { markAttendance, markOutAttendance } from "../api/attendanceApi";
 import "./SessionTimer.css";
 
-const SessionTimer = () => {
+const SessionTimer = ({fetchLogs}) => {
   const [message, setMessage] = useState("");
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
@@ -28,6 +28,7 @@ const SessionTimer = () => {
     try {
       const data = await markAttendance();
       setRunning(true);
+      await fetchLogs();
     } catch (error) {
       setMessage(error.response?.data?.message || "Error clocking in");
     }
@@ -38,6 +39,7 @@ const SessionTimer = () => {
       const data = await markOutAttendance();
       setRunning(false);
       setSeconds(0);
+      await fetchLogs();
     } catch (error) {
       setMessage(error.response?.data?.message || "Error clocking out");
     }
