@@ -6,6 +6,6 @@ export const createUser = async (userData) => {
 };
 
 export const deleteUser = async (email) => {
-  const response = await api.delete(`users/delete/${email}`);
+  const response = await api.delete(`/users/delete/${email}`);
   return response.data;
 };

@@ -28,7 +28,17 @@ export const createUser = async(req,res) => {
                 full_name: name,
                 email,
                 password: hashedPassword,
-                role
+                role,
+                leaveBalance: {
+                    create: {
+                        annualTotal: 15,
+                        annualUsed: 0,
+                        sickTotal: 10,
+                        sickUsed: 0,
+                        remoteTotal: 10,
+                        remoteUsed: 0
+                    }
+                }
             }
         })
         res.json({ message: "Employee created successfully", user });
@@ -56,6 +66,14 @@ export const deleteUser = async (req, res) => {
             });
 
         }
+
+        await prisma.attendance.deleteMany({
+            where: { userId: user.id }
+        });
+
+        await prisma.leave.deleteMany({
+            where: { userId: user.id }
+        });
 
         await prisma.user.delete({
             where: {

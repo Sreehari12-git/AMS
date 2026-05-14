@@ -61,11 +61,11 @@ const ApplyLeave = () => {
               Sick Leave
             </option>
 
-            <option value="CASUAL">
-              Paid Leave
+            <option value="REMOTE">
+              Remote 
             </option>
 
-            <option value="PAID">
+            <option value="ANNUAL">
               Annual Leave
             </option>
 
