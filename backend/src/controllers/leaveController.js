@@ -118,3 +118,49 @@ export const updateLeaveStatus = async(req,res) => {
     }
 }
 
+export const getLeaveBalance = async(req,res) => {
+    try{
+        const userId = req.params.userId;
+
+        const leaveBalance = await prisma.leaveBalance.findUnique({
+            where: {userId}
+        });
+
+        if(!leaveBalance) {
+            return res.status(404).json({
+                message: "Leave balance not found"
+            })
+        }
+
+        const annualRemaining = leaveBalance.annualTotal - leaveBalance.annualUsed;
+        const sickRemaining = leaveBalance.sickTotal - leaveBalance.sickUsed;
+        const remoteRemaining = leaveBalance.remoteTotal - leaveBalance.remoteUsed;
+
+        res.status(200).json({
+            annual: {
+                total: leaveBalance.annualTotal,
+                used: leaveBalance.annualUsed,
+                remaining : annualRemaining
+
+            },
+            sick: {
+                total: leaveBalance.sickTotal,
+                used: leaveBalance.sickUsed,
+                remaining: sickRemaining
+            },
+            remote: {
+                total: leaveBalance.remoteTotal,
+                used: leaveBalance.remoteUsed,
+                remaining: remoteRemaining
+            }
+        }
+
+        )
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Server error"
+        })
+    }
+}
+
