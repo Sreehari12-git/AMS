@@ -164,3 +164,23 @@ export const getLeaveBalance = async(req,res) => {
     }
 }
 
+export const getAllLeaves = async(req,res) => {
+    try {
+        const allLeaves = await prisma.leave.findMany({
+            where: {status: "PENDING"},
+            orderBy: { createdAt: "desc"},
+            include: {
+                user: {
+                    select: { full_name: true, role: true},
+                }
+            }
+        });
+        res.json(allLeaves);
+    }
+    catch(error) {
+        console.log(error);
+         res.status(500).json({
+            message: "Server error"
+        })
+    }
+}
