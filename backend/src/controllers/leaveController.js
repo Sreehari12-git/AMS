@@ -120,7 +120,7 @@ export const updateLeaveStatus = async(req,res) => {
 
 export const getLeaveBalance = async(req,res) => {
     try{
-        const userId = req.params.userId;
+        const userId = req.user.id;
 
         const leaveBalance = await prisma.leaveBalance.findUnique({
             where: {userId}

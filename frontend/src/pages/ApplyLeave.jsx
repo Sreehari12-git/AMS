@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { applyLeave } from '../api/leaveApi';
 import "./ApplyLeave.css"
+import ResidueLeave from '../components/ResidueLeaves';
 
 const ApplyLeave = () => {
 
@@ -34,9 +35,9 @@ const ApplyLeave = () => {
    return (
 
     <div className="leave-container">
+              <ResidueLeave />
 
       <div className="leave-card">
-
         <h1 className="leave-title">
           Apply Leave
         </h1>

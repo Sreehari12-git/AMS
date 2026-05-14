@@ -1,9 +1,12 @@
 .leave-container {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;        
   align-items: center;
+  justify-content: flex-start;   
   background: #f1f5f9;
+  padding: 1.5rem;
+  gap: 1.5rem;                   
 }
 
 .leave-card {
