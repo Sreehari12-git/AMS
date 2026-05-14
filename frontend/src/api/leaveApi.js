@@ -9,3 +9,17 @@ export const getLeaveBalance = async() => {
     const response = await api.get("/leave/leave-balance")
     return response.data;
 }
+
+export const allLeaves = async() => {
+    const response = await api.get("/leave/all");
+    return response.data;
+}
+
+export const updateLeave = async(leaveId,status) => {
+    const response = await api.put("/leave/update", {
+        leaveId,
+        status
+    });
+    return response.data;
+}
+

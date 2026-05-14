@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import "./HRSidebar.css"
 
 const HRSidebar = () => {
-
+    const navigate = useNavigate();
+    
     function logout() {
         localStorage.clear();
         navigate("/");

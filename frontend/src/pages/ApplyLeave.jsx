@@ -95,8 +95,6 @@ const ApplyLeave = () => {
 
         </form>
 
-        <p>{message}</p>
-
       </div>
 
     </div>
