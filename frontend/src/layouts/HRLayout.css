@@ -1,0 +1,11 @@
+.hr-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.hr-main-content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  background-color: #f4f4f8;
+}
