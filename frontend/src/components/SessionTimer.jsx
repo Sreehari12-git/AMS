@@ -7,11 +7,10 @@ const SessionTimer = ({ fetchLogs }) => {
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
 
-  // ✅ On mount, restore timer if there's an active session
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const data = await getCurrentSession();         // fetch active attendance record
+        const data = await getCurrentSession();         
         if (data?.clockIn && !data?.clockOut) {
           const clockInTime = new Date(data.clockIn);
           const elapsed = Math.floor((Date.now() - clockInTime.getTime()) / 1000);
@@ -19,7 +18,7 @@ const SessionTimer = ({ fetchLogs }) => {
           setRunning(true);
         }
       } catch (error) {
-        // No active session — stay idle
+        setMessage(error.response?.data?.message || "Error clocking out");
       }
     };
 

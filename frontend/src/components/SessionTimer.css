@@ -1,16 +1,21 @@
 /* SessionTimer.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 .timer-card {
+  background: #ffffff;
+  border: 0.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  background: #ffffff;
-  border: 0.5px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 1.75rem 2rem;
-  max-width: 680px;
-  margin: 1rem 0;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .timer-left {
@@ -23,21 +28,21 @@
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
+  font-weight: 500;
+  padding: 3px 10px;
   border-radius: 20px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
 }
 
-.badge-active {
-  background: #d1fae5;
-  color: #065f46;
+.timer-badge.idle {
+  background: #f1f5f9;
+  color: #64748b;
 }
 
-.badge-idle {
-  background: #f3f4f6;
-  color: #6b7280;
+.timer-badge.active {
+  background: #dcfce7;
+  color: #15803d;
 }
 
 .timer-dot {
@@ -48,64 +53,72 @@
   display: inline-block;
 }
 
+.timer-dot.pulse {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
 .timer-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px;
+  letter-spacing: -0.3px;
 }
 
 .timer-actions {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 10px 20px;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.15s ease;
-  border: none;
+  transition: all 0.12s ease;
+  border: 0.5px solid #cbd5e1;
+  background: transparent;
+  color: #1e293b;
+  font-family: 'Inter', sans-serif;
 }
 
-.btn:active {
+.btn:active:not(:disabled) {
   transform: scale(0.97);
 }
 
 .btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
 .btn-primary {
   background: #1d4ed8;
   color: #ffffff;
+  border-color: #1d4ed8;
 }
 
 .btn-primary:hover:not(:disabled) {
   background: #1e40af;
-}
-
-.btn-outline {
-  background: #ffffff;
-  color: #374151;
-  border: 0.5px solid #d1d5db;
+  border-color: #1e40af;
 }
 
 .btn-outline:hover:not(:disabled) {
-  background: #f9fafb;
+  background: #f8fafc;
 }
 
 .timer-msg {
-  font-size: 13px;
-  color: #6b7280;
-  margin: 14px 0 0;
+  font-size: 12px;
+  color: #64748b;
+  margin: 12px 0 0;
 }
 
 .timer-right {
@@ -115,26 +128,112 @@
 
 .dur-label {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #9ca3af;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: #94a3b8;
   text-transform: uppercase;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 
 .dur-value {
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 42px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.5px;
   margin: 0;
+  color: #cbd5e1;
   transition: color 0.3s ease;
+  font-family: 'Inter', sans-serif;
 }
 
 .dur-value.active {
-  color: #1d4ed8;
+  color: #1e293b;
 }
 
-.dur-value.idle {
-  color: #d1d5db;
+
+/* Attendance table */
+
+.att-table-wrapper {
+  background: #ffffff;
+  border: 0.5px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.att-header {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #64748b;
+  padding: 10px 14px;
+  border-bottom: 0.5px solid #e2e8f0;
+}
+
+.att-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  font-size: 13px;
+  padding: 11px 14px;
+  border-bottom: 0.5px solid #e2e8f0;
+  color: #475569;
+  align-items: center;
+  transition: background 0.1s ease;
+}
+
+.att-row:last-child {
+  border-bottom: none;
+}
+
+.att-row:hover {
+  background: #f8fafc;
+}
+
+.att-row .date {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.att-empty {
+  text-align: center;
+  padding: 32px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+
+/* Status badges */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-badge .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-badge.present {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.absent {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-badge.late {
+  background: #fef9c3;
+  color: #a16207;
 }

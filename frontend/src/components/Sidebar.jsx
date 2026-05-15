@@ -13,7 +13,6 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <h2 className="logo">AMS</h2>
-
       <nav className="nav-links">
         <NavLink to="attendance" className={({isActive}) => isActive ? "active-link": ""}>Attendance</NavLink>
         <NavLink to="leave" className={({isActive}) => isActive ? "active-link": ""}>Apply Leave</NavLink>
