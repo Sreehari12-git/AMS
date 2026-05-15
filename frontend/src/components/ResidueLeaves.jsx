@@ -15,36 +15,36 @@ const ResidueLeave = () => {
     },[]);
 
      return (
-        <div className="residue-grid">
+        <div className="leave-grid">
 
-            <div className="residue-stat-card">
-                <div className="residue-row">
-                    <h3 className="stat-label">ANNUAL LEAVE</h3>
-                    <span className="residue-remaining">{leaveBalance?.annual.remaining} Remaining</span>
+            <div className="leave-card blue">
+                <div className="card-header">
+                    <h3 className="card-label">ANNUAL LEAVE</h3>
+                    <span className="card-remaining">{leaveBalance?.annual.remaining} Remaining</span>
                 </div>
-                <div className="residue-meta">
+                <div className="card-meta">
                     <p>Total: {leaveBalance?.annual.total}</p>
                     <p>Used: {leaveBalance?.annual.used}</p>
                 </div>
             </div>
 
-            <div className="residue-stat-card">
-                <div className="residue-row">
-                    <h3 className="stat-label">SICK LEAVE</h3>
-                    <span className="residue-remaining">{leaveBalance?.sick.remaining} Remaining</span>
+            <div className="leave-card green">
+                <div className="card-header">
+                    <h3 className="card-label">SICK LEAVE</h3>
+                    <span className="card-remaining">{leaveBalance?.sick.remaining} Remaining</span>
                 </div>
-                <div className="residue-meta">
+                <div className="card-meta">
                     <p>Total: {leaveBalance?.sick.total}</p>
                     <p>Used: {leaveBalance?.sick.used}</p>
                 </div>
             </div>
 
-            <div className="residue-stat-card">
-                <div className="residue-row">
-                    <h3 className="stat-label">REMOTE LEAVE</h3>
-                    <span className="residue-remaining">{leaveBalance?.remote.remaining} Remaining</span>
+            <div className="leave-card amber">
+                <div className="card-header">
+                    <h3 className="card-label">REMOTE LEAVE</h3>
+                    <span className="card-remaining">{leaveBalance?.remote.remaining} Remaining</span>
                 </div>
-                <div className="residue-meta">
+                <div className="card-meta">
                     <p>Total: {leaveBalance?.remote.total}</p>
                     <p>Used: {leaveBalance?.remote.used}</p>
                 </div>

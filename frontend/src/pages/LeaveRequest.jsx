@@ -19,7 +19,7 @@ const LeaveRequest = () => {
   }, []);
 
   const formatDate = (date) =>
-    date.toLocaleDateString("en-US", { month: "short", day: "2-digit" });
+    new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
   const handleStatus = async (leaveId, status) => {
     try {
@@ -32,43 +32,74 @@ const LeaveRequest = () => {
   };
 
   return (
-    <div className="lr-wrapper">
+  <div className="lr-wrapper">
+    <div className="lr-header">
       <h2 className="lr-title">Leave Requests</h2>
-
-      {LeaveRequest.length === 0 ? (
-        <p className="lr-empty">No leave requests</p>
-      ) : (
-        LeaveRequest.map((leave) => {
-          const start = new Date(leave.startDate);
-          const end = new Date(leave.endDate);
-          const days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1;
-
-          return (
-            <div key={leave.id} className="lr-card">
-              <p className="lr-field"><span className="lr-key">Name</span>{leave.user.full_name}</p>
-              <p className="lr-field"><span className="lr-key">Type</span>{leave.type}</p>
-              <p className="lr-field">
-                <span className="lr-key">Status</span>
-                <span className={`lr-badge lr-badge-${leave.status.toLowerCase()}`}>
-                  {leave.status}
-                </span>
-              </p>
-              <p className="lr-field">
-                <span className="lr-key">Dates</span>
-                {formatDate(start)} — {formatDate(end)} ({days} {days === 1 ? "Day" : "Days"})
-              </p>
-              {leave.status === "PENDING" && (
-                <div className="lr-actions">
-                  <button className="lr-btn lr-approve" onClick={() => handleStatus(leave.id, "APPROVED")}>Approve</button>
-                  <button className="lr-btn lr-reject" onClick={() => handleStatus(leave.id, "REJECTED")}>Reject</button>
-                </div>
-              )}
-            </div>
-          );
-        })
-      )}
     </div>
-  );
+
+    <div className="lr-table-wrap">
+      <table className="lr-table">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>TYPE</th>
+            <th>DATES</th>
+            <th>DURATION</th>
+            <th>STATUS</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {LeaveRequest.length === 0 ? (
+            <tr>
+              <td colSpan={6} className="lr-empty">No leave requests</td>
+            </tr>
+          ) : (
+            LeaveRequest.map((leave) => {
+              const start = new Date(leave.startDate);
+              const end = new Date(leave.endDate);
+              const days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1;
+
+              return (
+                <tr key={leave.id} className="lr-row">
+                  <td className="lr-name">{leave.user.full_name}</td>
+                  <td>
+                    <span className="lr-type">
+                      <span className="lr-type-dot" />
+                      {leave.type}
+                    </span>
+                  </td>
+                  <td className="lr-date">
+                    {formatDate(leave.startDate)} — {formatDate(leave.endDate)}
+                  </td>
+                  <td className="lr-duration">
+                    {days} {days === 1 ? "Day" : "Days"}
+                  </td>
+                  <td>
+                    <span className={`lr-badge lr-badge-${leave.status.toLowerCase()}`}>
+                      <span className="lr-badge-dot" />
+                      {leave.status}
+                    </span>
+                  </td>
+                  <td>
+                    {leave.status === "PENDING" ? (
+                      <div className="lr-actions">
+                        <button className="lr-btn lr-approve" onClick={() => handleStatus(leave.id, "APPROVED")}>Approve</button>
+                        <button className="lr-btn lr-reject" onClick={() => handleStatus(leave.id, "REJECTED")}>Reject</button>
+                      </div>
+                    ) : (
+                      <span className="lr-no-action">—</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
 };
 
 export default LeaveRequest;

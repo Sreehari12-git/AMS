@@ -39,11 +39,11 @@ const MyLeaves = () => {
                 <td>{leave.type}</td>
 
                 <td>
-                  {new Date(leave.startDate).toLocaleDateString()}
+                  {new Date(leave.startDate).toLocaleDateString("en-US", { year: "numeric",month: "long",day: "numeric",})}
                 </td>
 
                 <td>
-                  {new Date(leave.endDate).toLocaleDateString()}
+                  {new Date(leave.startDate).toLocaleDateString("en-US", { year: "numeric",month: "long",day: "numeric",})}
                 </td>
 
                 <td>

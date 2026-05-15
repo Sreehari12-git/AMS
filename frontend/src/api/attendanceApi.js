@@ -20,3 +20,9 @@ export const getMyAttendance = async() => {
     const response = await api.get("/attendance/my");
     return response.data;
 }
+
+
+export const getCurrentSession = async() => {
+   const response = await api.get("/attendance/current");
+   return response.data;
+}

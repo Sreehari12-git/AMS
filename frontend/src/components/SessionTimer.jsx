@@ -1,12 +1,30 @@
 import { useEffect, useState } from "react";
-import { markAttendance, markOutAttendance } from "../api/attendanceApi";
+import { getCurrentSession, markAttendance, markOutAttendance } from "../api/attendanceApi";
 import "./SessionTimer.css";
 
-const SessionTimer = ({fetchLogs}) => {
+const SessionTimer = ({ fetchLogs }) => {
   const [message, setMessage] = useState("");
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
 
+  // ✅ On mount, restore timer if there's an active session
+  useEffect(() => {
+    const restoreSession = async () => {
+      try {
+        const data = await getCurrentSession();         // fetch active attendance record
+        if (data?.clockIn && !data?.clockOut) {
+          const clockInTime = new Date(data.clockIn);
+          const elapsed = Math.floor((Date.now() - clockInTime.getTime()) / 1000);
+          setSeconds(elapsed);
+          setRunning(true);
+        }
+      } catch (error) {
+        // No active session — stay idle
+      }
+    };
+
+    restoreSession();
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -27,7 +45,8 @@ const SessionTimer = ({fetchLogs}) => {
 
   const clockIn = async () => {
     try {
-      const data = await markAttendance();
+      await markAttendance();
+      setSeconds(0);
       setRunning(true);
       await fetchLogs();
     } catch (error) {
@@ -37,7 +56,7 @@ const SessionTimer = ({fetchLogs}) => {
 
   const clockOut = async () => {
     try {
-      const data = await markOutAttendance();
+      await markOutAttendance();
       setRunning(false);
       setSeconds(0);
       await fetchLogs();
@@ -53,11 +72,9 @@ const SessionTimer = ({fetchLogs}) => {
           <span className="timer-dot" />
           {running ? "ACTIVE SESSION" : "NOT CHECKED IN"}
         </span>
-
         <p className="timer-title">
           {running ? "You are currently Checked In" : "You are not checked in"}
         </p>
-
         <div className="timer-actions">
           <button className="btn btn-primary" onClick={clockIn} disabled={running}>
             Clock In
@@ -66,10 +83,8 @@ const SessionTimer = ({fetchLogs}) => {
             Clock Out
           </button>
         </div>
-
         {message && <p className="timer-msg">{message}</p>}
       </div>
-
       <div className="timer-right">
         <p className="dur-label">DURATION</p>
         <p className={running ? "dur-value active" : "dur-value idle"}>
@@ -81,4 +96,3 @@ const SessionTimer = ({fetchLogs}) => {
 };
 
 export default SessionTimer;
-

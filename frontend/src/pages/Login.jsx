@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import { loginUser } from '../api/auth'
-import { generateFcmToken } from '../firebase/messaging'
 import axios from 'axios'
 
 const Login = () => {
@@ -21,22 +20,7 @@ const Login = () => {
       localStorage.setItem("email", data.user.email || email);
       localStorage.setItem("username", data.user.fullName ?? "User");
 
-      const fcmToken = await generateFcmToken();
-
-      if (fcmToken) {
-        await axios.put(
-          "http://localhost:3000/user/save-token",
-        {
-          token: fcmToken,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        }
-      );
-    }
-
+    
       if(role === "admin") {
         navigate("/admin/create-user")  
       } else if(role === "employee"){

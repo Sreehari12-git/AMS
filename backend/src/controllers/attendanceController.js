@@ -151,3 +151,26 @@ export const getAllAttendance = async(req,res) => {
         res.status(500).json({ message: "Server error" });
     }
 }
+
+export const getCurrentSession = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const attendance = await prisma.attendance.findUnique({
+      where: {
+        userId_date: { userId, date: startOfDay },
+      },
+    });
+
+    if (!attendance) {
+      return res.status(404).json({ message: "No session found" });
+    }
+
+    res.status(200).json(attendance);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
