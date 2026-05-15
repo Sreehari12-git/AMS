@@ -29,7 +29,6 @@ model Attendance {
   clockIn DateTime?
   clockOut DateTime?
   duration String?
-  leaveType String?
   totalHours Float?
   latitude Decimal?
   longitude Decimal?

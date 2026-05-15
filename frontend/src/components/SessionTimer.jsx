@@ -82,7 +82,6 @@ const SessionTimer = ({ fetchLogs }) => {
             Clock Out
           </button>
         </div>
-        {message && <p className="timer-msg">{message}</p>}
       </div>
       <div className="timer-right">
         <p className="dur-label">DURATION</p>

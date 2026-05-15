@@ -3,8 +3,11 @@ import { applyLeave } from '../api/leaveApi';
 import "./ApplyLeave.css"
 import ResidueLeave from '../components/ResidueLeaves';
 import MyLeaves from '../components/MyLeaves';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const ApplyLeave = () => {
+
+  const navigate = useNavigate();
 
   const[leaveType, setLeaveType] = useState("");
   const[startDate, setStartDate] = useState("");
@@ -25,6 +28,8 @@ const ApplyLeave = () => {
        setLeaveType("");
       setStartDate("");
       setEndDate("");
+      navigate("/leave-status");
+
       
     }catch(error) {
       setMessage(

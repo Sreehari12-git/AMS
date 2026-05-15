@@ -167,10 +167,10 @@ export const getCurrentSession = async (req, res) => {
     if (!attendance) {
       return res.status(404).json({ message: "No session found" });
     }
-
     res.status(200).json(attendance);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };
+
