@@ -24,7 +24,7 @@ const RecentLogs = ({ logs }) => {
             <td>{log.clockIn ? new Date(log.clockIn).toLocaleTimeString() : "-"}</td>
             <td>{log.clockOut ? new Date(log.clockOut).toLocaleTimeString() : "-"}</td>
             <td>{log.duration || "-"}</td>
-            <td>{log.status}</td>
+            <td><span className={`status-badge status-${log.status?.toLowerCase()}`}>{log.status}</span></td>
           </tr>
         ))}
       </tbody>

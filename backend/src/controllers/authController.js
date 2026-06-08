@@ -18,7 +18,7 @@ export const loginUser = async(req,res) => {
                 return res.status(404).json({
                     message: "User not found"
                 });
-            }
+            }            
 
             const isMatch = await bcrypt.compare(password, user.password);
 
@@ -57,3 +57,4 @@ export const loginUser = async(req,res) => {
             });
         }
 }
+

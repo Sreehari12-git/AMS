@@ -75,6 +75,10 @@ export const deleteUser = async (req, res) => {
             where: { userId: user.id }
         });
 
+        await prisma.leaveBalance.deleteMany({
+             where: { userId: user.id }
+        });
+
         await prisma.user.delete({
             where: {
                 email
@@ -96,3 +100,4 @@ export const deleteUser = async (req, res) => {
     }
 
 }
+

@@ -27,3 +27,4 @@ export const getMyLeaves = async() => {
     const response = await api.get("/leave/myleaves");
     return response.data;
 }
+

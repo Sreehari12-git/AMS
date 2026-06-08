@@ -11,6 +11,7 @@ import Attendance from './pages/Attendance'
 import HRLayout from "./layouts/HRLayout"
 import LeaveRequest from './pages/LeaveRequest'
 import LeaveStatus from './pages/LeaveStatus'
+
 function App() {
   const RedirectIfAuthenticated = ({ children }) => {
     const token = localStorage.getItem("token");

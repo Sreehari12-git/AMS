@@ -10,7 +10,7 @@ import cors from "cors"
 const app = express()
 
 app.use(cors({
-    origin: "http://localhost:1000",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
@@ -23,8 +23,9 @@ app.use(express.json())
 app.use('/', authRoutes)
 app.use("/attendance", attendanceRoute)
 app.use("/users", userRouter)
-app.use("/leave",leaveRoute)
+app.use("/leave", leaveRoute)
 
 app.listen(PORT, () => {
-    console.log(`Listening to port ${PORT}`);  
+    console.log(`Listening to port ${PORT}`);
 })
+

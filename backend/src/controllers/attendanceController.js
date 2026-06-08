@@ -101,7 +101,7 @@ export const clockout = async(req,res) => {
     }
 }
 
-export const getMyAttendance = async(req,res,next) => {
+export const getMyAttendance = async(req,res) => {
     try {
         const userId = await req.user.id;
         
@@ -118,7 +118,7 @@ export const getMyAttendance = async(req,res,next) => {
     }
 }
 
-export const getTodayAttendance = async(req,res,next) => {
+export const getTodayAttendance = async(req,res) => {
     try {
         const userId = await req.user.id;
 

@@ -52,7 +52,9 @@ const LeaveRequest = () => {
         <tbody>
           {LeaveRequest.length === 0 ? (
             <tr>
-              <td colSpan={6} className="lr-empty">No leave requests</td>
+              <td colSpan={6} className="lr-empty">
+                <div className="lr-empty-text">No leave requests</div>
+              </td>
             </tr>
           ) : (
             LeaveRequest.map((leave) => {
@@ -103,3 +105,4 @@ const LeaveRequest = () => {
 };
 
 export default LeaveRequest;
+
