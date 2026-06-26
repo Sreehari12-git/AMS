@@ -1,29 +1,29 @@
 import bcrypt from "bcrypt"
 import prisma from "../config/prisma.js";
 
-export const createUser = async(req,res) => {
+export const createUser = async (req, res) => {
     try {
-        const { email, name, password, role} = req.body;
+        const { email, name, password, role } = req.body;
 
-         if (!email || !name || !password) {
+        if (!email || !name || !password) {
             return res.status(400).json({
                 message: "Name, email and password are required",
+            });
+        }
+
+        const existingUser = await prisma.user.findUnique({
+            where: { email },
         });
-    }
-    
-     const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
 
-    if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
-      });
-    }
+        if (existingUser) {
+            return res.status(400).json({
+                message: "User already exists",
+            });
+        }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await prisma.user.create({
+        const user = await prisma.user.create({
             data: {
                 full_name: name,
                 email,
@@ -42,10 +42,11 @@ export const createUser = async(req,res) => {
             }
         })
         res.json({ message: "Employee created successfully", user });
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
+
 
 export const deleteUser = async (req, res) => {
 
@@ -76,7 +77,7 @@ export const deleteUser = async (req, res) => {
         });
 
         await prisma.leaveBalance.deleteMany({
-             where: { userId: user.id }
+            where: { userId: user.id }
         });
 
         await prisma.user.delete({
@@ -89,7 +90,7 @@ export const deleteUser = async (req, res) => {
             message: "Deleted user successfully"
         });
 
-    } catch(error) {
+    } catch (error) {
 
         console.log(error);
 
@@ -98,6 +99,5 @@ export const deleteUser = async (req, res) => {
         });
 
     }
-
 }
 

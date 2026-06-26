@@ -13,7 +13,6 @@ model User {
   full_name String
   password String
   role String
-  fcmToken  String?
   created_at DateTime @default(now())
 
   attendance Attendance[]
