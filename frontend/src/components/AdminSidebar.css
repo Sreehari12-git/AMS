@@ -1,0 +1,100 @@
+.admin-sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #18181b; /* Sleek Charcoal (Zinc 900) */
+  border-right: 1px solid #27272a; /* Clean border border-zinc-800 */
+  padding: 28px 16px;
+  color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+/* Clear, solid branding */
+.admin-logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  padding: 0 12px 24px 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #27272a;
+  text-transform: uppercase;
+}
+
+/* Nav Link List Wrapper */
+.admin-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Administration Category label */
+.admin-nav-links::before {
+  content: "Administration";
+  font-size: 11px;
+  font-weight: 600;
+  color: #71717a; /* Neutral Zinc 500 label */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding-left: 12px;
+}
+
+/* Standard navigation links */
+.admin-nav-links a {
+  text-decoration: none;
+  color: #a1a1aa; /* Neutral gray */
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.admin-nav-links a:hover {
+  background-color: #27272a; /* Zinc 800 hover background */
+  color: #ffffff;
+}
+
+/* Active navigation item (Matches standard dark dashboard design) */
+.active-link {
+  background-color: rgba(255, 255, 255, 0.08) !important; /* Elegant subtle white tint */
+  color: #ffffff !important; /* Solid high-contrast white */
+  font-weight: 600;
+  border-left: 3px solid #2563eb; /* Matches corporate blue active accent */
+  border-radius: 0 6px 6px 0 !important;
+  padding-left: 13px !important;
+}
+
+/* Professional secondary layout for Logout */
+.admin-logout-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid rgba(251, 113, 133, 0.2); /* Muted red outline */
+  border-radius: 6px;
+  background-color: transparent;
+  color: #fca5a5; /* Soft warning red */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+.admin-logout-btn:hover {
+  background-color: rgba(239, 68, 68, 0.08);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.admin-logout-btn:active {
+  background-color: rgba(239, 68, 68, 0.16);
+}
+
+
+
+

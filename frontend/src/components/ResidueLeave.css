@@ -1,0 +1,197 @@
+/* ── Leave grid ── */
+.leave-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* ── Base card ── */
+.leave-card {
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid transparent;
+}
+
+/* ── Card color themes ── */
+.leave-card.blue  { background: #dbeafe; border-color: #93c5fd; }
+.leave-card.green { background: #dcfce7; border-color: #86efac; }
+.leave-card.amber { background: #fef3c7; border-color: #fcd34d; }
+
+/* ── Card top row ── */
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Card label ── */
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.blue  .card-label { color: #1d4ed8; }
+.green .card-label { color: #15803d; }
+.amber .card-label { color: #b45309; }
+
+/* ── Status badge ── */
+.card-badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 99px;
+}
+.blue  .card-badge { background: #bfdbfe; color: #1d4ed8; }
+.green .card-badge { background: #bbf7d0; color: #15803d; }
+.amber .card-badge { background: #fde68a; color: #b45309; }
+
+/* ── Big number ── */
+.card-number {
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1;
+}
+.blue  .card-number { color: #1e40af; }
+.green .card-number { color: #166534; }
+.amber .card-number { color: #92400e; }
+
+/* ── "days remaining" label ── */
+.card-sublabel {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.blue  .card-sublabel { color: #2563eb; }
+.green .card-sublabel { color: #16a34a; }
+.amber .card-sublabel { color: #d97706; }
+
+/* ── Progress bar ── */
+.card-bar-bg {
+  height: 5px;
+  border-radius: 99px;
+}
+.blue  .card-bar-bg { background: #bfdbfe; }
+.green .card-bar-bg { background: #bbf7d0; }
+.amber .card-bar-bg { background: #fde68a; }
+
+.card-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+}
+.blue  .card-bar-fill { background: #2563eb; }
+.green .card-bar-fill { background: #16a34a; }
+.amber .card-bar-fill { background: #d97706; }
+
+/* ── Footer (Total / Used) ── */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.blue  .card-footer { color: #1d4ed8; }
+.green .card-footer { color: #15803d; }
+.amber .card-footer { color: #b45309; }
+
+
+/* ── Apply Leave form ── */
+.form-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 2rem;
+}
+
+.form-head {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.form-sub {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Select wrapper ── */
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #64748b;
+}
+
+/* ── Inputs & selects ── */
+.form-select,
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-select:focus,
+.form-input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px #e0f2fe;
+}
+
+/* ── Submit button — matches sidebar navy + cyan accent ── */
+.apply-btn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #38bdf8;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.apply-btn:hover  { background: #1e293b; }
+.apply-btn:active { transform: scale(0.98); }
